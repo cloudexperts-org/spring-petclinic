@@ -43,10 +43,10 @@ jobs:
       # Step 6: Build Docker image with SHA and latest tags
       - name: Build Docker image
         run: |
-          docker build -t my-dockerhub-username/spring-petclinic:${{ github.sha }} .
-          docker tag my-dockerhub-username/spring-petclinic:${{ github.sha }} my-dockerhub-username/spring-petclinic:latest
+          docker build -t cloudexperts/spring-petclinic:${{ github.sha }} .
+          docker tag cloudexperts/spring-petclinic:${{ github.sha }} my-dockerhub-username/spring-petclinic:latest
 
       - name: Push Docker images
         run: |
-          docker push my-dockerhub-username/spring-petclinic:${{ github.sha }}
-          docker push my-dockerhub-username/spring-petclinic:latest
+          docker push cloudexperts/spring-petclinic:${{ github.sha }}
+          docker push cloudexperts/spring-petclinic:latest
