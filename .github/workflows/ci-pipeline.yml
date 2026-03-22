@@ -44,7 +44,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t cloudexperts/spring-petclinic:${{ github.sha }} .
-          docker tag cloudexperts/spring-petclinic:${{ github.sha }} my-dockerhub-username/spring-petclinic:latest
+          docker tag cloudexperts/spring-petclinic:${{ github.sha }} cloudexperts/spring-petclinic:latest
 
       - name: Push Docker images
         run: |
