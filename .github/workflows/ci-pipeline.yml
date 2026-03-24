@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: self-hosted
+    runs-on: build_server
 
     steps:
       # Step 1: Checkout the repository
