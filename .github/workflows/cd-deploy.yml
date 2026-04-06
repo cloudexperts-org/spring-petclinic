@@ -1,10 +1,15 @@
 name: CD Pipeline - Deploy
 
 on:
-  workflow_run:
-    workflows: ["Build and Push Docker Image"]   # must match CI name exactly
-    types:
-      - completed
+  push:
+    branches:
+      - main
+
+#on:
+#  workflow_run:
+#    workflows: ["Build and Push Docker Image"]   # must match CI name exactly
+#    types:
+#      - completed
 
 jobs:
   deploy:
