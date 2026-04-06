@@ -24,22 +24,23 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Deploy to EC2
-      - name: Deploy to EC2 via SSH
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Pull latest image from Docker Hub
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGENAME }}:latest
+            echo "IMAGE=$IMAGE"
 
-            # Stop and remove old container
+            docker pull $IMAGE:latest
+
             docker stop app || true
             docker rm app || true
 
-            # Run new container
             docker run -d \
               --name app \
               -p 8080:8080 \
-              ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGENAME }}:latest
+              $IMAGE:latest
+        env:
+          IMAGE: ${{ secrets.DOCKER_IMAGE }}
