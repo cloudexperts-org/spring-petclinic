@@ -1,4 +1,4 @@
-name: CD Pipeline - Deploy to EC2
+name: CD Pipeline - Deploy
 
 #on:
 #  push:
@@ -7,7 +7,7 @@ name: CD Pipeline - Deploy to EC2
 
 on:
   workflow_run:
-    workflows: ["Build and Push Docker Image"]   # must match CI name exactly
+    workflows: ["Build and Push Docker Image"]
     types:
       - completed
 
@@ -39,12 +39,16 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           envs: IMAGE
           script: |
-            echo "IMAGE=$IMAGE"
+            echo "Deploying $IMAGE"
             docker pull $IMAGE:latest
             docker stop app || true
             docker rm app || true
 
             docker run -d \
               --name app \
+              --restart unless-stopped \
               -p 8080:8080 \
               $IMAGE:latest
+
+            docker image prune -f
+          
