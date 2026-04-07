@@ -1,4 +1,4 @@
-name: CD Pipeline - Deploy
+name: CD Pipeline - Deploy to EC2
 
 on:
   push:
