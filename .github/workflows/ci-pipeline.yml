@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
 
       # Step 3: Build the JAR File
-      - name: Build the JAR File
+      - name: Build the JAR File with JRE - DevOps Webinar 17th April
         run: mvn clean package -DskipTests
 
       # Step 4: Log in to the Docker Hub
