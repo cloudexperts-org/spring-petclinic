@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Step 3: Build the JAR File
+      # Step 3: Build the JAR File with JRE
       - name: Build the JAR File - DevOps Webinar 25th April
         run: mvn clean package -DskipTests
 
